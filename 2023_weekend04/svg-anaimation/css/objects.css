@@ -1,0 +1,17 @@
+#mainVisual {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#mainVisual svg {
+  height: 500px;
+  filter: drop-shadow(3px 3px 3px rgba(0, 0, 0, 0.2));
+}
+#mainVisual .title {
+  margin-top: 50px;
+  font-size: 3vw;
+  font-weight: 900;
+  font-family: "Nunito";
+}

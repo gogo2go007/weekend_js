@@ -1,0 +1,11 @@
+supermario-3d
+
+css요소에 perspective가 있어야 입체적으로 보인다
+  perspective: 5000px;
+
+
+transform: translateZ(-${idx*5000}px); 원근감 생기게 하는 코드
+ z-index:${100-idx} 줄세우기
+
+perspective-origin: 50% 10%;
+소실점을 어디로 옮길 것인가에 대한 코드

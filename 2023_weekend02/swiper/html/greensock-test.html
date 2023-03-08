@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>그린삭</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .box {
+        width: 100px;
+        aspect-ratio: 1/1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+      }
+      .red {
+        background-color: red;
+      }
+      .green {
+        background-color: green;
+      }
+      .blue {
+        background-color: blue;
+      }
+    </style>
+    <script src="../js/greensock/gsap.min.js"></script>
+  </head>
+  <body>
+    <div class="box red">red</div>
+    <div class="box green">green</div>
+    <div class="box blue">blue</div>
+    <script>
+      //transform:translaterX(100px)
+      // to는 멀어지는 방향 보낼 때
+      // gsap.to(".box", {
+      //   x: 800,
+      //   duration: 3,
+      //   //ease: "bounce.in", //out이 디폴트값이라 안써도 되는데 in 앞에서 효과 발생시킬때 사용
+      //   ease: "power4.out",
+      //   stagger: 0.2, // 시간차발생시킬때
+      // });
+
+      // from은 돌아오게 할때(대상,{주고 싶은 효과})
+      gsap.from(".red", {
+        x: 800, // 가로 x축으로 800 이동
+        duration: 3, //3초동안
+        //ease: "bounce.in", //out이 디폴트값이라 안써도 되는데 in 앞에서 효과 발생시킬때 사용
+        ease: "power4.out", // 속도의 탄성?
+        stagger: 0.2, // 시간차발생시킬때
+        backgroundColor: "black",
+      });
+    </script>
+  </body>
+</html>

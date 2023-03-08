@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>자바스크립트_ 1일차</title>
+  </head>
+  <body>
+    <script>
+      // 데이터 종류 5가지
+      // 정수, 실수
+      // 문자열 string
+      // boolean (true/false)
+      // undefinde
+      // null
+
+      console.log(0.675);
+      console.log("msg");
+      console.log(10 > 2);
+      // const =>바뀌지 않는 값 // 변수를 만듦과 동시에 값도 지정해야한다
+      const ratio = 0.2;
+      const age = 21;
+      const myName = "영은";
+
+      // let => 바뀌는 값
+      let weight; // assingment  // 변수를 만들어 놓고 값을 지정하지 않아도 된다 undefinde
+      weight = weight + 10;
+      console.log(weight);
+      let car = null; // 변수를 만들어 놓고 값은 만들어 놓고 싶지 않을 때
+
+      // truthy (숫자는 0 제외 다 truthy: 진짜처럼 취급한다)
+      // falsy (0, undefined, null, "" , NaN => falsy: 가짜처럼 취급한다)
+      // "20"+1
+      const myAge = "20";
+      const conVertAge = parseInt(myAge); //  입력값이 문자로 들어왔을때 숫자로 바꿔준다 parseInt()
+      console.log(conVertAge + 1);
+      if (age > 20) {
+        console.log("음주 가능");
+      }
+
+      let studentName = "고영은";
+      let studentAge = 20;
+      let studentWeight = 50;
+
+      let student01 = { name: "고영은", age: 20, weight: 50 }; //json: 자바스크립트오브젝트
+      let student02 = { name: "장성호", age: 30, weight: 80 };
+      let student03 = { name: "장동건", age: 40, weight: 70 };
+
+      console.log(student02.age);
+      console.log(student02["name"]); // 잘안씀
+
+      //   const studentList = ["고영은", "장성호", "장동건"]; // 배열 (array)
+      console.log(studentList[0]);
+
+      const studentList = [
+        { name: "고영은", age: 20, weight: 50 },
+        { name: "장성호", age: 30, weight: 80 },
+        { name: "장동건", age: 40, weight: 70 },
+      ];
+      console.log(studentList[0].weight);
+    </script>
+  </body>
+</html>

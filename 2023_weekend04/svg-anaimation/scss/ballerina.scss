@@ -1,0 +1,35 @@
+#mainVisual {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #e1d6d7;
+  svg {
+    height: 600px;
+    path {
+      stroke-width: 2px;
+      &.cls-4 {
+        stroke-dasharray: 4871;
+        stroke-dashoffset: 4871;
+        // transition: all 15s;//gsap 쓸때는 사용하면 안됨
+        &.on {
+          stroke-dashoffset: 0;
+        }
+      }
+    }
+  }
+  .title {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    font-size: 10vw;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: 900;
+    // -webkit-text-fill-color: rgba(0, 0, 0, 0.1);
+    // -webkit-text-stroke-width: 1px;
+    // -webkit-text-stroke-color: rgba(0, 0, 0, 0.2);
+    text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.05);
+    font-family: "Nunito";
+  }
+}

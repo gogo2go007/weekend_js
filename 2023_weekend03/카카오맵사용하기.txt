@@ -1,0 +1,40 @@
+
+
+지도 위치 서비스 만들기
+카카오맵
+https://apis.map.kakao.com/
+
+application server(정적서버)
+application server(동적서버): 요청하면 데이터를 가공해서 보내줌
+요청하면 종목에 따라 원하는 값의 데이터를 다르게 보내줌
+
+팬시앱(개인무료/회사유료)
+https://fancyapps.com/
+installation> CDN > js 파일 css파일 저장
+
+
+
+서버 맛보기
+노드 다운 
+
+서버를 만들고
+서버 안에서 값을 가져와서
+출력하기
+http://127.0.0.1:3001/board/list
+
+$npm install express
+$ ^C =>빠져나가기
+$node index.js
+
+코딩
+패스트컴퍼스_좀 어려움
+https://fastcampus.co.kr/
+
+유데미_쌈
+https://www.udemy.com/
+
+인프런
+https://www.inflearn.com/
+
+니꼴라스코딩 > 코딩 강의
+https://nomadcoders.co/?gclid=EAIaIQobChMIurLd8Zrs_AIVgmSLCh0OkwNoEAAYAiAAEgK6GvD_BwE

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="upgrade-insecure-requests"
+    />
+    <title>서버실습</title>
+    <link rel="stylesheet" href="css/fancybox.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <script src="js/greensock/gsap.min.js"></script>
+    <script src="js/fancybox.umd.js"></script>
+  </head>
+  <body>
+    <div>
+      <input type="text" placeholder="search image & vclip..." class="search" />
+    </div>
+    <div class="image">
+      <h2>Images</h2>
+      <ul class="thumbs"></ul>
+    </div>
+    <div class="vclip">
+      <h2>vclip</h2>
+      <ul class="thumbs"></ul>
+    </div>
+
+    <script>
+      // promise
+      const search = document.querySelector(".search");
+      const imgThumbs = document.querySelector(".image .thumbs");
+      const vclipThumbs = document.querySelector(".vclip .thumbs");
+
+      //keyup 키보드를 누를때마다
+      search.addEventListener("keyup", function (e) {
+        console.log(e);
+        if (e.keyCode === 13) {
+          loadImg(search.value);
+          loadVclip(search.value);
+        }
+        //loadImg(search.value);
+      });
+
+      // loadImg("로지");
+      function loadImg(searchWord) {
+        const myFetch = fetch(
+          `https://dapi.kakao.com/v2/search/image?query=${searchWord}`,
+          {
+            headers: {
+              Authorization: "KakaoAK ba276b362c1c55a1638095cca8e2ea79",
+            },
+          }
+        )
+          .then(function (response) {
+            //console.log(response);
+            return response.json(); //promise를 리턴받아서 then으로 받아서 출력 promise시작하면 반드시resolve,reject로 응답해야한다
+          })
+          .then(function (json) {
+            console.log(json);
+            let tempHtml = "";
+            json.documents.forEach(function (item, idx) {
+              imgThumbs += `<li><a href="${item.image_url}" data-fancybox ="img"><img src="${item.thumbnail_url}"></a></li>`;
+            });
+            thumbs.innerHTML = tempHtml;
+            gsap.from(".image .thumbs li", {
+              scale: 0,
+              duration: 1,
+              stagger: 0.01,
+            });
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      }
+
+      function loadVclip(searchWord) {
+        const myFetch = fetch(
+          `https://dapi.kakao.com/v2/search/vclip?query=${searchWord}&size=30`,
+          {
+            headers: {
+              Authorization: "KakaoAK ba276b362c1c55a1638095cca8e2ea79",
+            },
+          }
+        )
+          .then(function (response) {
+            //console.log(response);
+            return response.json(); //promise를 리턴받아서 then으로 받아서 출력 promise시작하면 반드시resolve,reject로 응답해야한다
+          })
+          .then(function (json) {
+            console.log(json);
+            let tempHtml = "";
+            json.documents.forEach(function (item, idx) {
+              tempHtml += `<li><a href="${item.url}" data-fancybox ="img"><img src="${item.thumbnail}"></a></li>`;
+            });
+            vclipThumbs.innerHTML = tempHtml;
+            gsap.from(".vclip .thumbs li", {
+              scale: 0,
+              duration: 1,
+              stagger: 0.01,
+            });
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      }
+
+      //fetch는 promise로 생각하면 된다.
+
+      //console.log(myFetch);
+      //소개팅...pending > 대기중
+      //그녀가 나왔음...fulfilled > 약속이 이뤄짐
+      //그녀가 나오지 않았음...reject > 약속이 이뤄지지 않음
+
+      //promise 약속이 만들어졌다
+      //promise 함수는 반드시 resolve, reject
+      const isHandsome = false;
+      const myPromise = new Promise(function (resolve, reject) {
+        if (isHandsome) {
+          resolve("당산역으로 나감");
+        } else {
+          reject("주선자 죽이러 감..");
+        }
+      });
+      console.log(myPromise);
+      myPromise
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    </script>
+  </body>
+</html>

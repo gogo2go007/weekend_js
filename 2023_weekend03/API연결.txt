@@ -1,0 +1,43 @@
+
+API사이트
+라이브러리
+
+제이쿼리
+https://api.jquery.com/
+
+스와이퍼
+https://swiperjs.com/swiper-api
+
+**그린삭스_유료 상업적으로 회사에서 많이 씀
+애니메이션 효과 
+https://greensock.com/docs/
+
+그린삭스 이용법
+메인 화면에서 zip 다운 > 오프라인 사용가능
+gsap-public > minified > gsap.min js파일을 복사해서 해당 폴더 붙여넣기
+온라인만 사용하려면 주소 복사 
+
+애니메제이슨_무료
+애니메이션 효과 
+https://animejs.com/
+
+리액트 > DOCS
+https://reactjs.org/
+
+스플린팅제이에스
+글자 쪼개주는 효과줄때
+Splitting-master > dist > js 파일이랑 css파일이랑 두개 가져오기
+해당 클래스에 붙여 넣고 검사창 통해서 어떻게쪼개졌는지랑
+클래스명 확인해서 그린삭스 이용해서 애니메이션 효과
+https://splitting.js.org/
+
+
+참고!!
+ease효과
+https://greensock.com/ease-visualizer/
+
+오류찾을때 
+1. 문법적 오류
+2. 오탈자...
+3. 로직오류  > 찾기 어려움 여기서 주니어 vs 시니어
+

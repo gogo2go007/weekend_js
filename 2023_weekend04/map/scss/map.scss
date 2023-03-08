@@ -1,0 +1,61 @@
+@import "mixin";
+.map {
+  .contents {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    transform: translateY(calc(-50% - 10px));
+    &::after {
+      content: "";
+      display: block;
+      border: 10px solid transparent;
+      border-top-color: #fff;
+      position: absolute;
+      left: 50%;
+      bottom: -20px;
+      transform: translateX(-50%);
+    }
+  }
+  h2 {
+    font-size: 14px;
+    font-weight: 700;
+  }
+  h3 {
+    font-size: 12px;
+  }
+  .close {
+    background: #222fe6;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    position: absolute;
+    top: -5px;
+    right: 0;
+    outline: none;
+    transform: translateY(-100%);
+    line-height: 1;
+  }
+}
+.csList {
+  display: flex;
+  width: 1400px;
+  margin: 50px auto;
+  gap: 10px;
+  flex-wrap: wrap;
+  li {
+    border: 1px solid #ccc;
+    padding: 10px 15px;
+    border-radius: 100px;
+    cursor: pointer;
+    overflow: hidden;
+    &.on {
+      $blue: #008cd7;
+      background: $blue;
+      border-color: $blue;
+      color: #fff;
+      @include longShadow(darken($blue, 10), 30) //컬러값 블루라는 10프로 어둡게
+;
+    }
+  }
+}

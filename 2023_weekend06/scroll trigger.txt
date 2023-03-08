@@ -1,0 +1,4 @@
+scroll trigger
+
+js연결 : 그린삭폴더>스크롤 트리거
+

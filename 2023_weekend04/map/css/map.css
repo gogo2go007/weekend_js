@@ -1,0 +1,57 @@
+.map .contents {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  transform: translateY(calc(-50% - 10px));
+}
+.map .contents::after {
+  content: "";
+  display: block;
+  border: 10px solid transparent;
+  border-top-color: #fff;
+  position: absolute;
+  left: 50%;
+  bottom: -20px;
+  transform: translateX(-50%);
+}
+.map h2 {
+  font-size: 14px;
+  font-weight: 700;
+}
+.map h3 {
+  font-size: 12px;
+}
+.map .close {
+  background: #222fe6;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  position: absolute;
+  top: -5px;
+  right: 0;
+  outline: none;
+  transform: translateY(-100%);
+  line-height: 1;
+}
+
+.csList {
+  display: flex;
+  width: 1400px;
+  margin: 50px auto;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.csList li {
+  border: 1px solid #ccc;
+  padding: 10px 15px;
+  border-radius: 100px;
+  cursor: pointer;
+  overflow: hidden;
+}
+.csList li.on {
+  background: #008cd7;
+  border-color: #008cd7;
+  color: #fff;
+  text-shadow: 1px 1px 0px #006ba4,2px 2px 0px #006ba4,3px 3px 0px #006ba4,4px 4px 0px #006ba4,5px 5px 0px #006ba4,6px 6px 0px #006ba4,7px 7px 0px #006ba4,8px 8px 0px #006ba4,9px 9px 0px #006ba4,10px 10px 0px #006ba4,11px 11px 0px #006ba4,12px 12px 0px #006ba4,13px 13px 0px #006ba4,14px 14px 0px #006ba4,15px 15px 0px #006ba4,16px 16px 0px #006ba4,17px 17px 0px #006ba4,18px 18px 0px #006ba4,19px 19px 0px #006ba4,20px 20px 0px #006ba4,21px 21px 0px #006ba4,22px 22px 0px #006ba4,23px 23px 0px #006ba4,24px 24px 0px #006ba4,25px 25px 0px #006ba4,26px 26px 0px #006ba4,27px 27px 0px #006ba4,28px 28px 0px #006ba4,30px 30px 0px #006ba4;
+}

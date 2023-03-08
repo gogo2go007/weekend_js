@@ -1,0 +1,40 @@
+핀터레스트 효과_ 
+-하단 지그재그 배열 
+-마우스 움직임 커서 보이기
+-아이소프트 api 연결
+
+마우스 움직일 때 따라 움직이는 효과 및
+아이소토프
+fetch 라이브러리 불러오기
+
+웹은 제이쿼리
+
+ajax() 라는 함수가 있다
+
+3.ios 방법
+https://axios-http.com/kr/docs/intro
+jsDelivr CDN 사용하기:
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+-지그재그로 배열하기
+masonry js
+https://masonry.desandro.com/
+
+-필터링 소팅(순서대로나열) 
+isotope js
+https://isotope.metafizzy.co/
+
+레이아웃모드>masonryHorizontal
+
+이미지 지그재그할때 이미지 로딩 후 정렬하기 위한 소스 다운
+images loaded js
+https://imagesloaded.desandro.com/
+
+마우스 커서 움직임
+clientY
+ pointer-events: none;
+사용자가 클릭하기 위해서 한겹 싸여있는 부분의 이벤트를 해제함...> 이거 안하면 클릭이 잘 안됨
+
+data-fancybox: 이미지 클릭하면 이미지가 크게 뜸
+팬시박스 js랑 css 연결 후 html a태그에 data-fancybox="${item.category}" 적용

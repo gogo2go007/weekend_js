@@ -1,0 +1,43 @@
+
+자바스크립트 안에 있는 내장 객체들 
+js built in object
+검색하면 나옴
+
+깃 설치
+https://git-scm.com/download/win
+Standalone Installer
+64비트로 설치
+
+깃 
+모든 프로그램을 관리 가능
+포토샵 html 등
+
+관리하는 파일을 추가 할때
+관리를 시작한다
+git add
+
+책갈피처럼 표시하는..
+git commit -m "보고서 01"
+
+clear
+
+git add .
+
+현재 상태 알고 싶을때
+git status
+On branch master
+nothing to commit, working tree clean
+잘 하고 있다
+
+ git log
+
+:
+:q 나갈때
+
+
+git log --oneline
+
+git checkout 파일이름
+
+git checkout master
+최종 상태로 되돌릴때

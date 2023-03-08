@@ -1,0 +1,14 @@
+
+
+
+fullPage js 검색
+https://alvarotrigo.com/fullPage/ko/#page1
+
+디케이지홀딩스 구현하기
+http://dkgholdings.co.kr/
+
+
+
+비디오 태그 자동재생
+muted utoplay
+자동 재생시 반드시 muted 같이 해줘야지 자동재생가능

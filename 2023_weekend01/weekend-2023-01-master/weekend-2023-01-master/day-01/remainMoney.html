@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .money {
+        width: 500px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 87650 오만원 1장,만원 3장 , 오천원 1장 ,천원 2장 오백원 1개 백원 1개 오십원 1개 -->
+    <label><input type="number" placeholder="금액을 입력하세요. ex)87650" class="money" /></label>
+    <button class="btn">계산</button>
+    <div class="result"></div>
+    <script>
+      const num01 = 10;
+      const num02 = 5;
+      console.log(num01 + num02);
+      console.log(num01 - num02);
+      console.log(num01 * num02);
+      console.log(num01 / num02);
+      console.log(num01 % num02);
+      //50000,10000,5000,1000,500,100,50,10
+      // 몫을 구해서 챙겨가고 나머지 연산을 통해서 잔돈 계산
+      document.querySelector(".btn").addEventListener("click", function () {
+        const numMoney = document.querySelector(".money").value;
+        const money_50000 = parseInt(numMoney / 50000);
+        const money_10000 = parseInt((numMoney % 50000) / 10000);
+        const money_5000 = parseInt((numMoney % 10000) / 5000);
+        const money_1000 = parseInt((numMoney % 5000) / 1000);
+        const money_500 = parseInt((numMoney % 1000) / 500);
+        const money_100 = parseInt((numMoney % 500) / 100);
+        const money_50 = parseInt((numMoney % 100) / 50);
+        const money_10 = parseInt((numMoney % 50) / 10);
+        //console.log("🚀 ~ file: remainMoney.html:32 ~ money_50000", money_50000);
+        document.querySelector(".result").textContent = `오만원권 : ${money_50000}만원권 : ${money_10000}  오천원권 : ${money_5000}`;
+      });
+    </script>
+  </body>
+</html>

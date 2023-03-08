@@ -1,0 +1,37 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+li {
+  list-style: none;
+}
+img {
+  vertical-align: top;
+}
+.search {
+  padding: 10px 50px;
+  border: 1px solid #eee;
+  font-size: 18px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.15);
+  display: block;
+  width: 800px;
+  height: 80px;
+  border-radius: 100px;
+  margin: 50px auto;
+}
+.thumbs {
+  width: 1200px;
+  margin: 50px auto;
+  display: flex;
+  flex-wrap: wrap;
+  li {
+    width: 100px;
+    img {
+      width: 100%;
+    }
+  }
+}
+.image .thumbs li {
+  width: 60px;
+}

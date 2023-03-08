@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      car<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8" /> <meta
+      http-equiv="X-UA-Compatible" content="IE=edge" /> <meta name="viewport"
+      content="width=device-width, initial-scale=1.0" /> <title>전기차
+    </title>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/fancybox.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/map.css" />
+    <script
+      type="text/javascript"
+      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7c5b934b9d3d0c12e3bbf1822dee87db&libraries=services,clusterer"
+    ></script>
+    <script src="js/greensock/gsap.min.js"></script>
+    <script src="js/fancybox.umd.js"></script>
+  </head>
+  <body>
+    <div>
+      <input type="text" placeholder="전기차 충전소 검색하기" class="search" />
+    </div>
+
+    <div class="map"></div>
+    <script>
+      // const myFetch = fetch("https://api.odcloud.kr/api/EvInfoServiceV2/v1/getEvSearchList?page=1&perPage=100&cond%5Baddr%3A%3ALIKE%5D=%EC%84%9C%EC%9A%B8&serviceKey=dlxRuSQJRMX9s9K%2FDWwg2OFfDWaONtMN%2FgF5gemRrOsnzYKsLuSPMQ7GdMYwX9Y5Jwcp6fH05Ru%2BN%2BKryBRrlg%3D%3D");
+      // const myJson = myFetch.then(function(response){
+      //   return response.json();
+      // })
+      // myJson.then(function(result){
+      //   console.log(result)
+      // })
+      // 서비스, 예를들어 todo crud(create,read,update,remove)를 만들어보는게 좋다
+      const mapContainer = document.querySelector(".map");
+      const mapOption = {
+        center: new kakao.maps.LatLng(37.66826, 126.9786557), // 지도의 중심좌표
+        level: 14, // 지도의 확대 레벨
+      };
+
+      const myMap = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+      // 마커 클러스터러를 생성합니다 >숫자로 표시해준다
+      var clusterer = new kakao.maps.MarkerClusterer({
+        map: myMap, // 마커들을 클러스터로 관리하고 표시할 지도 객체
+        averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
+        minLevel: 10, // 클러스터 할 최소 지도 레벨
+      });
+
+      // 커스텀 오버레이를 생성합니다
+      var customOverlay = new kakao.maps.CustomOverlay({
+        //position: position,
+        //content: `<h1>나는 커스텀 오버레이</h1>`,
+        yAnchor: 1,
+      });
+
+      // 이벤트 위임... ajax를 통해 새로운 태그가 만들어질때 이벤트를 걸고 싶다. bubbling
+      document.body.addEventListener("click", function (e) {
+        //console.log(e.target); // 내가 마우스 찍었을때 그 요소
+        //console.log(e.target.tagName);
+        //console.log(e.target.tagName === "BUTTON");
+        //customOverlay.setMap(null);
+        if (e.target.closest("button") || e.target.tagName === "button") {
+          customOverlay.setMap(null); // 이벤트에 가장 가까운 곳에 있는 부모가 지워라
+        }
+      });
+
+      const search = document.querySelector(".search");
+      search.addEventListener("keyup", function (e) {
+        if (e.keyCode === 13) {
+          //엔터를 눌렀을때
+          loadElectroCar(search.value);
+        }
+      });
+      function loadElectroCar(city) {
+        fetch(
+          `https://api.odcloud.kr/api/EvInfoServiceV2/v1/getEvSearchList?page=1&perPage=100&cond%5Baddr%3A%3ALIKE%5D=${city}&serviceKey=Wnus4QpirWGI56CfvzMWDIDHMRL%2FmEF%2FqTl9gwVNbRggLYTGPFIdwBy0L51B%2B27d5QRbLanNmIAxPwNvl7dKPA%3D%3D`
+        )
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (result) {
+            const { data } = result;
+            console.log("🚀 ~ file: car.html:46 ~ data", data);
+            const markers = [];
+            data.forEach(function (item, idx) {
+              const marker = new kakao.maps.Marker({
+                map: myMap,
+                position: new kakao.maps.LatLng(item.lat, item.longi),
+              });
+              // 마커에 클릭이벤트를 등록합니다
+              kakao.maps.event.addListener(marker, "click", function () {
+                customOverlay.setMap(myMap);
+                customOverlay.setPosition(marker.getPosition());
+                customOverlay.setContent(
+                  `
+                <div class ="contents">
+                <h2>${item.csNm}</h2>
+                <h3>${item.addr}</h3>
+                <h3>충전타입:${item.cpNm}</h3>
+                <button class="close"><span class="material-icons">close</span></button>
+                </div>
+                `
+                );
+              });
+              markers.push(marker);
+            });
+            //myMap.addMarkers(markers);
+            clusterer.addMarkers(markers);
+          });
+      }
+    </script>
+  </body>
+</html>

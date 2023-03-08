@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      car<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8" /> <meta
+      http-equiv="X-UA-Compatible" content="IE=edge" /> <meta name="viewport"
+      content="width=device-width, initial-scale=1.0" /> <title>전기차2_선생님
+    </title>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/fancybox.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/map.css" />
+    <script
+      type="text/javascript"
+      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7c5b934b9d3d0c12e3bbf1822dee87db&libraries=services,clusterer"
+    ></script>
+    <script src="js/greensock/gsap.min.js"></script>
+    <script src="js/fancybox.umd.js"></script>
+  </head>
+  <body>
+    <div>
+      <input type="text" placeholder="전기차 충전소 검색하기" class="search" />
+    </div>
+    <div>
+      <ul class="csList"></ul>
+    </div>
+    <div class="map"></div>
+    <script>
+      // const myFetch = fetch("https://api.odcloud.kr/api/EvInfoServiceV2/v1/getEvSearchList?page=1&perPage=100&cond%5Baddr%3A%3ALIKE%5D=%EC%84%9C%EC%9A%B8&serviceKey=dlxRuSQJRMX9s9K%2FDWwg2OFfDWaONtMN%2FgF5gemRrOsnzYKsLuSPMQ7GdMYwX9Y5Jwcp6fH05Ru%2BN%2BKryBRrlg%3D%3D");
+      // const myJson = myFetch.then(function(response){
+      //   return response.json();
+      // })
+      // myJson.then(function(result){
+      //   console.log(result)
+      // })
+      // 서비스, 예를들어 todo crud(create,read,update,remove)를 만들어보는게 좋다
+
+      const mapContainer = document.querySelector(".map");
+      const csList = document.querySelector(".csList");
+
+      csList.addEventListener("click", function (e) {
+        if (e.target.tagName === "LI" || e.target.closest("li")) {
+          const siblings = [...e.target.parentElement.children]; // 배열이 아니어서 for문을 못돌리기 때문에 배열로 만들어줌 ...
+          siblings.forEach(function (item, idx) {
+            item.classList.remove("on");
+          });
+
+          e.target.classList.add("on");
+          const { csnm, addr, lat, longi, cpnm } = e.target.dataset;
+          customOverlay.setMap(myMap);
+          customOverlay.setPosition(new kakao.maps.LatLng(lat, longi));
+          customOverlay.setContent(
+            `<div class="contents">
+                    <h2>${csnm}</h2>
+                    <h3>${addr}</h3>
+                    <h3>충전타입 : ${cpnm}</h3>
+                    <button class="close"><span class="material-icons">close</span></button>
+                   </div>
+                  `
+          );
+          marker.setPosition(new kakao.maps.LatLng(lat, longi));
+          myMap.setLevel(8);
+          myMap.setCenter(new kakao.maps.LatLng(lat, longi));
+        }
+      });
+
+      const mapOption = {
+        center: new kakao.maps.LatLng(37.66826, 126.9786557), // 지도의 중심좌표
+        level: 14, // 지도의 확대 레벨
+      };
+
+      const myMap = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+      // 마커 클러스터러를 생성합니다
+      const clusterer = new kakao.maps.MarkerClusterer({
+        map: myMap, // 마커들을 클러스터로 관리하고 표시할 지도 객체
+        averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
+        minLevel: 10, // 클러스터 할 최소 지도 레벨
+      });
+
+      // 커스텀 오버레이를 생성합니다
+      const customOverlay = new kakao.maps.CustomOverlay({
+        //position: position,
+        //content: `<h1>나는 커스텀 오버레이</h1>`,
+        yAnchor: 1,
+      });
+
+      const marker = new kakao.maps.Marker({
+        map: myMap,
+      });
+
+      // 이벤트 위임... ajax를 통해 새로운 태그가 만들어질때 이벤트를 걸고 싶다.
+      document.body.addEventListener("click", function (e) {
+        console.log(e.target);
+        console.log(e.target.tagName);
+        console.log(e.target.tagName === "BUTTON");
+        console.log(e.target.closest("button"));
+        //customOverlay.setMap(null);
+        if (e.target.closest("button")) {
+          customOverlay.setMap(null);
+        }
+      });
+      const search = document.querySelector(".search");
+      search.addEventListener("keyup", function (e) {
+        if (e.keyCode === 13) {
+          loadElectricCar(search.value);
+        }
+      });
+      function loadElectricCar(city) {
+        clusterer.clear();
+        myMap.setLevel(14);
+        customOverlay.setMap(null);
+        fetch(
+          `https://api.odcloud.kr/api/EvInfoServiceV2/v1/getEvSearchList?page=1&perPage=100&cond%5Baddr%3A%3ALIKE%5D=${city}&serviceKey=Wnus4QpirWGI56CfvzMWDIDHMRL%2FmEF%2FqTl9gwVNbRggLYTGPFIdwBy0L51B%2B27d5QRbLanNmIAxPwNvl7dKPA%3D%3D`
+        )
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (result) {
+            const { data } = result;
+            console.log(data);
+            let temp = "";
+            data.forEach(function (item, idx) {
+              temp += `<li data-lat="${item.lat}" data-longi ="${item.longi}" data-csNm = "${item.csNm}" data-addr="${item.addr}" data-cpNm="${item.cpNm}">${item.csNm}</li>`;
+            });
+            csList.innerHTML = temp;
+          });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,55 @@
+#mainVisual {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  svg {
+    path {
+      fill: none;
+      stroke: #ff0000;
+      stroke-width: 5px;
+      &.path01 {
+        stroke-dasharray: 1425;
+        stroke-dashoffset: 1425;
+        animation: drawPath01 1s linear 1s 1 forwards;
+      }
+      &.path02 {
+        stroke-dasharray: 2149;
+        stroke-dashoffset: 2149;
+        animation: drawPath02 1s linear 2s 1 forwards;
+      }
+      &.path03 {
+        stroke-dasharray: 1425;
+        stroke-dashoffset: 1425;
+        animation: drawPath03 1s linear 3s 1 forwards;
+        //animation: name duration timing-function delay iteration-count direction fill-mode;
+      }
+    }
+  }
+}
+
+@keyframes drawPath01 {
+  0% {
+    stroke-dashoffset: -1425;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes drawPath02 {
+  0% {
+    stroke-dashoffset: -2149;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes drawPath03 {
+  0% {
+    stroke-dashoffset: -1425;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}

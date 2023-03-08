@@ -1,0 +1,36 @@
+git git허브 연동
+git config --global user.email "sldkf@sldkfj.com"
+git config --global user.name "sldkf@sldkfj.com"
+
+ 깃허브에 주소 복사해서
+로컷 깃에 복붙  origin
+git push origin master
+인증하라고 뜸
+
+
+새폴더 만들고
+코드>주소복사
+뷰> 터미널 열어서
+git clone   복붙(주소) 한칸 띄고 . 찍으면 
+. 찍으면 그 안에 폴더를 안만듬
+클라우드에서 넘어옴
+>처음 만들대만 클론하고 
+그 다음부터는 git pull origin master
+
+
+git log --oneline 
+찍어서 확인
+
+git add .
+git commit -m "04.psd 파일 추가"
+클라우드로 내보내기
+git push origin master
+
+내가 다시 다운 받을 때
+(이미 작업 중인 파일로)
+ git pull origin master
+
+
+
+
+

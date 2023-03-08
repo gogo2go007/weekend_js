@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DATE</title>
+    <style>
+      body {
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        background-color: #000;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      h1,
+      h2 {
+        font-size: clamp(36px, 10vw, 150px);
+        margin: 20px 0;
+        /* font-size: 10vw; */
+      }
+    </style>
+  </head>
+  <body>
+    <h1></h1>
+    <h2></h2>
+    <h3></h3>
+    <script>
+      function plusFive(num) {
+        console.log(num + 5);
+      }
+      plusFive(3);
+      plusFive(7);
+      function bank(num, ratio) {
+        return num + (num * ratio) / 100 - num * 0.015;
+      }
+      function bmi(height, weight) {
+        const cm = height / 100;
+        return weight / cm ** 2; // cm*cm  === cm**2 === Math.pow(cm,2)
+      }
+      const returnMoney = bank(70000000, 4.5);
+      function addZero(num) {
+        if (num < 10) {
+          return "0" + num;
+        }
+        return "" + num;
+      }
+      // 자바스크립트 함수는 일급객체이다.
+      // 1. 변수에 할당할 수 있어야 한다.
+      // 2. 매개 변수로 전달받는다.
+
+      const showDate = function () {
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = addZero(now.getMonth() + 1);
+        const date = addZero(now.getDate());
+        const day = now.getDay(); //0~6 , 일,월,화,수,목,금
+        const dayList = ["Sun", "Mon", "화요일", "수요일", "목요일", "금요일", "토요일"];
+
+        const hour = addZero(now.getHours());
+        const min = addZero(now.getMinutes());
+        const sec = addZero(now.getSeconds());
+
+        document.querySelector("h1").textContent = `${year}/${month}/${date} ${dayList[day]}`;
+
+        document.querySelector("h2").innerHTML = `<span>${hour}</span>:<span>${min}</span>:${sec}`;
+      };
+      showDate();
+      const clickFunc = function () {
+        console.log("click");
+      };
+      document.querySelector("h1").addEventListener("click", clickFunc);
+      setInterval(showDate, 1000);
+
+      function makeCallBack(paramFunc) {
+        paramFunc();
+      }
+      makeCallBack(function () {
+        console.log("나는 콜백 함수");
+      });
+    </script>
+  </body>
+</html>

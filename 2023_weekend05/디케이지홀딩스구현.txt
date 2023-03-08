@@ -1,0 +1,72 @@
+
++스플린터
++지삭 폴더 추가하기
+
+
+디케이지홀딩스 구현하기
+http://dkgholdings.co.kr/
+
+-비디오 태그 자동재생
+muted utoplay
+자동 재생시 반드시 muted 같이 해줘야지 자동재생가능
+
+fullPage js 검색
+https://alvarotrigo.com/fullPage/ko/#page1
+다운받기> fullPage.js-master > dist > fullpage.css랑fullpage.min 파일 복사 넣어주기
+>바닐라 스크립트 삽입
+ new fullpage('#main', {});
+
+관련
+https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#fullpagejs
+콜백에서 afterLoad 예시 복사
+스크롤 내렸을때 나타나게 하려고 
+
+
+
+1.footer에
+스크린의 높이(100vh)를 인식하지 말고 컨텐츠의 높이로 인식해라
+fp-auto-height 
+
+2. 글자 쪼개기
+data-splitting
+
+
+밑줄도 애니메이션 걸러주고 싶으면
+::after로 들어가 있어서 css 제어가 필요한데 자바스크립트에서 css 제어 못함
+근데 그린삭은 할 수 있음
++
+파일연결[그린삭안에 있는 파일 중]
+CSSRulePlugin 연결
+
+
+영상 재생 다시
+data-keepplaying
+
+페이지 전환 자연스럽게 하는 
+https://barba.js.org/
+
+canvas js효과임
+효과지정하고
+ Download current config (json) 다운
+깃허브 아래 내용 복사 
+
+
+마우스 움직임에 따라 
+https://vincentgarreau.com/particles.js/
+
+꽃가루를 날려~
+https://confettijs.org/
+
+
+
+
+
+인덱스 만들고
+메타태그 > 리다이렉션 
+하면 인덱스 폴더에 있는 인덱스 파일을 
+바깥으로 불러들일수 있다
+
+
+
+
+

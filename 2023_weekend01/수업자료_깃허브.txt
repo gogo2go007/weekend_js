@@ -1,0 +1,40 @@
+
+수업자료 깃허브 
+https://github.com/tisflyjjang051/lecture-html
+
+
+노드
+
+온라인 강의
+udemy.com
+
+
+다양한 API
+카카오개발자도구
+네이버개발자도구
+data.go.kr
+TMDB =>영화관련
+https://www.themoviedb.org/?language=ko
+
+검색 
+오픈api
+
+세계적인 사이트 소개
+awwwards.com
+3D나 특수효과 관련 참고 
+threejs.org
+
+백준알고리즘
+https://www.acmicpc.net/
+
+배포할때
+https://www.netlify.com/
+
+vs 코드 단축키 변경 
+https://rudalskim.tistory.com/96
+
+여러가지 date 관련 커스텀 
+date picker
+
+컨트롤 누르고 함수 찍으면 함수에 대한 
+관련 내용이 나온다

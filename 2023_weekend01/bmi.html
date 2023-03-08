@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BMI</title>
+  </head>
+  <body>
+    <label
+      ><span>키</span
+      ><input
+        type="number"
+        placeholder="키를 cm단위로 입력하세요 ex)180"
+        class="height"
+    /></label>
+    <label
+      ><span>몸무게</span
+      ><input
+        type="number"
+        placeholder="몸무게를 kg단위로 입력하세요 ex)85"
+        class="weight"
+    /></label>
+    <button class="btn">계산</button>
+    <div class="result"></div>
+    <script>
+      document.querySelector(".btn").addEventListener("click", function () {
+        const numHeight = document.querySelector(".height").value;
+        //console.log("🚀 ~ file: bmi.html:17 ~ numHeight", "numHeight");
+        if (numHeight === "") {
+          alert("키를 입력하세요.");
+          return;
+        }
+        const numWeight = document.querySelector(".weight").value;
+        if (numWeight === "") {
+          alert("몸무게를 입력하세요.");
+          return;
+        }
+        const cm = numHeight / 100;
+        const bmi = numWeight / cm ** 2;
+        let msg;
+        // if (bmi < 18.5) {
+        //   msg = "저체중";
+        // } else if (bmi >= 18.5 && bmi < 23) {
+        //   msg = "정상";
+        // } else {
+        //   msg = "비만";
+        // }
+        if (bmi < 18.5) {
+          msg = "저체중";
+        } else if (bmi >= 23) {
+          msg = "비만";
+        } else {
+          msg = "정상";
+        }
+        document.querySelector(".result").textContent = `${bmi.toFixed(
+          2 // 소수점 두자리에서 끊어준다
+        )}/${msg}`;
+      });
+    </script>
+  </body>
+</html>

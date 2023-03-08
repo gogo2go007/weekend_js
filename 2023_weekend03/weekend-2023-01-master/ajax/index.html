@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/fancybox.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <script src="js/greensock/gsap.min.js"></script>
+    <script src="js/fancybox.umd.js"></script>
+  </head>
+  <body>
+    <div>
+      <input type="text" placeholder="search image & vclip..." class="search" />
+    </div>
+    <div class="image">
+      <h2>Images</h2>
+      <ul class="thumbs"></ul>
+    </div>
+    <div class="vclip">
+      <h2>Vclips</h2>
+      <ul class="thumbs"></ul>
+    </div>
+    <script>
+      // promise
+      const search = document.querySelector(".search");
+
+      const imgThumbs = document.querySelector(".image .thumbs");
+      const vclipThumbs = document.querySelector(".vclip .thumbs");
+
+      search.addEventListener("keyup", function (e) {
+        console.log(e);
+        if (e.keyCode === 13) {
+          loadImg(search.value);
+          loadVclip(search.value);
+        }
+      });
+      //loadImg("로지");
+      function loadImg(searchWord) {
+        const myFetch = fetch(`https://dapi.kakao.com/v2/search/image?query=${searchWord}`, {
+          headers: { Authorization: "KakaoAK 6b2baf1cf6415f955c240557b86a01e2" },
+        })
+          .then(function (response) {
+            //console.log(response);
+            //console.log(response.json());
+            return response.json();
+          })
+          .then(function (json) {
+            console.log(json);
+            let tempHtml = "";
+            json.documents.forEach(function (item, idx) {
+              tempHtml += `<li><a href="${item.image_url}" data-fancybox="img"><img src="${item.thumbnail_url}"></a></li>`;
+            });
+            imgThumbs.innerHTML = tempHtml;
+            gsap.from(".image .thumbs li", { scale: 0, duration: 1, stagger: 0.01 });
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      }
+
+      function loadVclip(searchWord) {
+        const myFetch = fetch(`https://dapi.kakao.com/v2/search/vclip?query=${searchWord}&size=30`, {
+          headers: { Authorization: "KakaoAK 6b2baf1cf6415f955c240557b86a01e2" },
+        })
+          .then(function (response) {
+            //console.log(response);
+            //console.log(response.json());
+            return response.json();
+          })
+          .then(function (json) {
+            console.log(json);
+            let tempHtml = "";
+            json.documents.forEach(function (item, idx) {
+              tempHtml += `<li><a href="${item.url}" data-fancybox="img"><img src="${item.thumbnail}"></a></li>`;
+            });
+            vclipThumbs.innerHTML = tempHtml;
+            gsap.from(".vclip .thumbs li", { scale: 0, duration: 1, stagger: 0.01 });
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      }
+
+      const isHandsome = true;
+      const myPromise = new Promise(function (resolve, reject) {
+        if (isHandsome) {
+          resolve({ name: "장성호", money: 0 });
+        } else {
+          reject("주선자 죽이러 감...");
+        }
+      });
+      console.log(myPromise);
+      myPromise
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    </script>
+  </body>
+</html>

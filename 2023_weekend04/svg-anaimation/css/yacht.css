@@ -1,0 +1,29 @@
+#mainVisual {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #e1d6d7;
+}
+#mainVisual svg {
+  height: 600px;
+  width: 100vw;
+}
+#mainVisual svg path {
+  stroke-width: 2px;
+}
+#mainVisual svg path.cls-4 {
+  stroke-dasharray: 3669;
+  stroke-dashoffset: 3669;
+}
+#mainVisual .title {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  font-size: 7.5vw;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: 900;
+  text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.05);
+  font-family: "Nunito";
+}

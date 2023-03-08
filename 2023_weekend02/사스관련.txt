@@ -1,0 +1,26 @@
+사스관련
+https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/slice
+
+
+sass사용
+live sass compiler 확장 깔기
+
+확장프로그램에서 검색
+post sort
+깔면
+속성값이 순서대로 나열된다
+
+
+view>commendpalett>검색 post css sort누르면
+설정할대로의 순서대로 정렬한다
+
+
+bem방법론이랑 scss랑 섞어서 요즘 많이 ㅆ느다
+
+
+
+https://swiperjs.com/
+fullpage.js
+https://alvarotrigo.com/fullPage/examples/normalScroll.html#firstPage
+circletype.co.kr
+

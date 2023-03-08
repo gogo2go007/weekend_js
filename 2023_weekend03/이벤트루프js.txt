@@ -1,0 +1,10 @@
+
+자바스크립트 동작 순서
+
+이벤트 푸프 js
+https://developer.mozilla.org/ko/docs/Web/JavaScript/EventLoop
+
+선입후출 stack
+선입선출 queue
+
+https://stackoverflow.com/

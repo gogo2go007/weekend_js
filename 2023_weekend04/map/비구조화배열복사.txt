@@ -1,0 +1,28 @@
+지도 페이지에서 한페이지에서 여러가지 지역 표시하고 싶을때
+
+내가 필요해서 쓰고 싶은 속성에
+data- 필요한 속성이름 
+예)ata-title
+
+e.preventDefault(); // a태그가 가지고 있는 링크 기능 무력화
+
+ console.log(item.dataset);
+
+const {address,link,title} = item.dataset;
+
+오브젝트 배열
+구조{키, 밸류, 키, 밸류~}
+비구조화:디스트럭처 
+ const {address,link,title} = item.dataset;
+
+오브젝트를 비구조화 할때
+const {name.age} = {name:장성호",age:20,weight:80}
+
+배열복사할때
+const arr = [1,2,3];
+      const copyArr = arr; // 같은 주소로서 copyArr=arr이 같다 // push로 밀어넣을때 capysk arr 같이 변경된다
+      const copyArr = [...arr]; //스프래드연산자_흩뿌리는 연산자 >  배열 복사할때 
+      arr.push(4);
+      console.log(copyArr);
+
+

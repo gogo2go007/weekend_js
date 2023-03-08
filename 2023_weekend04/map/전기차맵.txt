@@ -1,0 +1,53 @@
+전기차 맵
+https://www.data.go.kr/iim/api/selectAPIAcountView.do
+키발급받는다
+인증키 
+1.헤더방식
+2.쿼리방식
+우리는 쿼리
+
+일반인증키 복사해서 인증키설정에
+쿼리에 붙여넣기
+
+openapi 실행준비 클릭 그래야 값을 입력할수 있다
+값 입력후
+openapi  호출 클릭하면 
+아래에 값이 떨어진다
+
+Request URL
+
+
+
+카카오맵api>샘플
+여러개 마커 표시하기
+여러개 마커 제어하기
+
+
+*마커 클러스터러 사용하기
+스크립트 주소 + 내 인증키 + =services,clusterer
+
+마커를 생성하는 코드 복붙
+클러스터러 마커 함수 호출
+
+*커스텀오버레이
+커스텀오버레이를 생성하는 코드 복붙
+
+
+*마커에 클릭 이벤트 등록하기
+마커에 클릭 이벤트를 생성하는 코드 복붙후
+customOverlay.setMap(myMap); >이런식으로 나한테 맞게 커스텀함
+
+*닫기가 가능한 커스텀 오버레이
+
+
+*이벤트 위임:: 없는 거에대 이벤트 걸때 사용 
+ document.body.addEventListener("click", function (e) {
+        console.log(e.target); // 내가 마우스 찍었을때 그 요소
+
+      }
+
+-구글검색
+url디코딩
+코드 붙여 넣기 
+
+주소 창에는 특수문자 못쓴다

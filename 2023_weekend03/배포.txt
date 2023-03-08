@@ -1,0 +1,11 @@
+
+https://www.netlify.com/
+
+카카오에 등록해야한다 
+내가 네틀리파이에 올린 주소를 카카오개발자 사이트에서
+내 애플리케이션> 내계정> 플랫폼 >web에 주소 등록
+
+
+Mixed content 에러 해결
+https://wellsw.tistory.com/34
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">

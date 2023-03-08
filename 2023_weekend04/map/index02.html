@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>지도2</title>
+    <link rel="stylesheet" href="css/fancybox.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5d738bd87720c302b72dc8d2b8fc03d4&libraries=services"></script>
+    <script src="js/greensock/gsap.min.js"></script>
+    <script src="js/fancybox.umd.js"></script>
+  </head>
+  <body>
+    <div>
+      <input type="text" placeholder="search image & vclip..." class="search" />
+    </div>
+    <div class="btns">
+      <a href="#"
+      data-address = "서울특별시 영등포구 선유로130"
+      data-title = "tis 정보통신 교육센터"
+      data-link = "https://map.kakao.com/link/map/11394059">tis영등포</a>
+      <a href="#"
+      data-address = "서울 송파구 성내천로 14길 13"
+      data-title = "tis 정보통신 강남센터"
+      data-link = "https://map.kakao.com/link/map/11394059">tis강남</a>
+      <a href="">tis강원도</a>
+    </div>
+    <div class="map">
+      <!-- 여기에 지도 들어옴.... canvas -->
+    </div>
+    <script>
+      const days = [ "sun", "mon","tue"];
+      // const [a,b] = days;
+      const {name,age} = {name:"장성호",age:20,weight:80};
+      let a = 10;
+      let b = 20;
+      // a와 b의 값을 바꿔라
+      //첫번째 방법 값을c에 치환시켜 변경
+      let c = a;
+      a=b;
+      b=c;
+
+      [b,a]=[a,b] //배열은 구조 분해가 가능해서 값이 뒤바뀜
+      console.log(a,b);
+
+      const arr = [1,2,3];
+      //const copyArr = arr; // 같은 주소로서 copyArr=arr이 같다 // push로 밀어넣을때 capysk arr 같이 변경된다
+      const copyArr = [...arr]; //스프래드연산자_흩뿌리는 연산자 >  배열 복사할때 
+      arr.push(4);
+      console.log(copyArr); //primitive(1,"글자",true,false.null.undefined)
+                                      //>기본타입의 이런거는 할당받음
+                            // [],{}
+      let aa =10;
+      let bb=aa;
+      aa=20;
+
+
+
+      const btn = document.querySelectorAll(".btns a");
+      btn.forEach(function(item,idx){
+        item.addEventListener("click",function(e){
+          e.preventDefault(); // a태그가 가지고 있는 링크 기능 무력화
+          console.log(item.dataset); 
+          const {address,link,title} = item.dataset; //많이 씀 비구조화
+          loadMap(address,title,link);
+
+        })
+
+      })
+    
+
+      const container = document.querySelector(".map"); //지도를 담을 영역의 DOM 레퍼런스
+      /*
+      //현재 위치를 지도에 표시
+      navigator.geolocation.getCurrentPosition(function (position) {
+        console.log(position);
+        const myLatitude = position.coords.latitude;
+        const myLongitude = position.coords.longitude;
+
+        const options = {
+          //지도를 생성할 때 필요한 기본 옵션
+          center: new kakao.maps.LatLng(myLatitude, myLongitude), //지도의 중심좌표.
+          level: 3, //지도의 레벨(확대, 축소 정도)
+        };
+
+        const map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+        map.setCenter();
+      });
+      */
+      // 주소검색해서 지도 표시
+      const mapOption = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        level: 3, // 지도의 확대 레벨
+      };
+
+      // 지도를 생성합니다
+      const mapContainer = document.querySelector(".map");
+      const map = new kakao.maps.Map(mapContainer, mapOption);
+
+      // 주소-좌표 변환 객체를 생성합니다
+      const geocoder = new kakao.maps.services.Geocoder();
+
+      // 주소로 좌표를 검색합니다
+      function loadMap(address,title,link){
+        geocoder.addressSearch(address, function (result, status) {
+        // 정상적으로 검색이 완료됐으면
+        if (status === kakao.maps.services.Status.OK) {
+          const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+          const imageSrc = "images/briefcase.png", // 마커이미지의 주소입니다
+            imageSize = new kakao.maps.Size(64, 64), // 마커이미지의 크기입니다
+            imageOption = { offset: new kakao.maps.Point(32, 64) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+          // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+          const markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
+            markerPosition = coords; // 마커가 표시될 위치입니다
+
+          // 마커를 생성합니다
+          const marker = new kakao.maps.Marker({
+            position: markerPosition,
+            image: markerImage, // 마커이미지 설정
+          });
+
+          // 마커가 지도 위에 표시되도록 설정합니다
+          marker.setMap(map);
+
+          // 커스텀 오버레이에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+          const content = `<div class="customoverlay">
+              <a href=${link} target="_blank">
+                <span class="title">${title}</span>
+              </a>
+            </div>`;
+
+          // 커스텀 오버레이가 표시될 위치입니다
+          const position = coords;
+
+          // 커스텀 오버레이를 생성합니다
+          var customOverlay = new kakao.maps.CustomOverlay({
+            map: map,
+            position: position,
+            content: content,
+            yAnchor: 1,
+          })
+          // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+          map.setCenter(coords);
+        }
+      });
+      }
+    </script>
+  </body>
+</html>
